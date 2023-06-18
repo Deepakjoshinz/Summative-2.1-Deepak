@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="/CSS/main.min.css" />
     <title>Document</title>
   </head>
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
   <body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
     <div class="container">
       <div class="overlay">
         <div class="text-container">
@@ -19,31 +19,86 @@
           </div>
         </div>
       </div>
-      
-
       <div class="overlay-2"></div>
-        <div id="content" class="content">
-          <div class="text">
+      <div id="content" class="content">
+        <div class="text">
           <h1>Welcome to Explore NZ</h1>
           <p class="data">
-            New Zealands expert travel planning agency at your fingertips.
+            New Zealands premier travel planning agency at your fingertips.
             Explore Accomodation, Food, Activities and much more.
           </p>
         </div>
-        <div class="btn-container">
-          <a id="onePerson" class="btn">One Guest</a>
-          <a id="twoPerson" class="btn">Two Guests</a>
-          <a id="threePerson" class="btn">Three Guests</a>
-          <a id="fourPerson" class="btn">Four Guests</a>
+
+        <div id="app">
+          <transition name="fade" mode="out-in" @enter="enter" @leave="leave">
+            <!-- Step 1: Select number of guests -->
+            <div v-if="step === 1" key="step1">
+              <button
+                type="button"
+                v-for="n in 5"
+                @click="people = n; nextStep()"
+              >
+                {{ n }} Guest(s)
+              </button>
+            </div>
+
+            <!-- Step 2: Select number of days -->
+            <div v-if="step === 2" key="step2">
+              <input
+                v-model="days"
+                type="number"
+                placeholder="Number of days"
+              />
+              <button @click="nextStep">Next</button>
+              <button @click="previousStep">Back</button>
+            </div>
+
+            <!-- Step 3: Select location -->
+            <div v-if="step === 3" key="step3">
+              <select v-model="location">
+                <option v-for="location in uniqueLocations" :value="location">
+                  {{ location }}
+                </option>
+              </select>
+              <button @click="nextStep">Next</button>
+              <button @click="previousStep">Back</button>
+            </div>
+
+            <!-- Step 4: Display accommodation options -->
+            <div v-if="step === 4" key="step4">
+              <h2>Available Accommodations</h2>
+              <div
+                v-for="option in getAccommodations()"
+                @click="selectAccommodation(option)"
+              >
+                {{ option.name }} in {{ option.location }}: ${{ option.cost }}
+                per night
+              </div>
+              <button @click="previousStep">Back</button>
+            </div>
+          </transition>
+
+          <!-- Modal for selected accommodation -->
+          <div v-if="selectedAccommodation" class="modal">
+            <h2>{{ selectedAccommodation.name }}</h2>
+            <p>Location: {{ selectedAccommodation.location }}</p>
+            <p>${{ selectedAccommodation.cost }} per night</p>
+            <p>
+              Total cost for {{ days }} days: ${{ selectedAccommodation.cost *
+              days }}
+            </p>
+            <!-- TODO: Display map -->
+          </div>
         </div>
-      </container>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="Javascript/minified/gsap.min.js"></script>
-    <script src="Javascript/data.js"></script>
-    <script src="Javascript/scraper.js"></script>
+    <script type="module" src="Javascript/data.js"></script>
     <script src="Javascript/cursor.js"></script>
-    <script src="Javascript/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script type="module" src="Javascript/vue-app.js"></script>
+    <script src="Javascript/gsap.js"></script>
   </body>
 </html>
