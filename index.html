@@ -33,48 +33,62 @@
           <transition name="fade" mode="out-in" @enter="enter" @leave="leave">
             <!-- Step 1: Select number of guests -->
             <div v-if="step === 1" key="step1">
+              <h3>Select a number of guests</h3>
               <button
+                class="option-button"
+                :class="{ active: people === n }"
                 type="button"
                 v-for="n in 5"
-                @click="people = n; nextStep()"
-              >
+                @click="people = n; nextStep()">
                 {{ n }} Guest(s)
               </button>
             </div>
 
             <!-- Step 2: Select number of days -->
             <div v-if="step === 2" key="step2">
-              <input
-                v-model="days"
-                type="number"
-                placeholder="Number of days"
-              />
-              <button @click="nextStep">Next</button>
-              <button @click="previousStep">Back</button>
+              <h3>Select a stay length</h3>
+              <select class="option-button" v-model="days">
+                <option v-for="n in 15" :value="n">{{ n }}</option>
+              </select>
+              <button class="option-button" @click="nextStep">Next</button>
+              <button class="option-button" @click="previousStep">Back</button>
             </div>
 
             <!-- Step 3: Select location -->
             <div v-if="step === 3" key="step3">
-              <select v-model="location">
+              <select class="option-button" v-model="location">
                 <option v-for="location in uniqueLocations" :value="location">
                   {{ location }}
                 </option>
               </select>
-              <button @click="nextStep">Next</button>
-              <button @click="previousStep">Back</button>
+              <button class="option-button" @click="nextStep">Next</button>
+              <button class="option-button" @click="previousStep">Back</button>
             </div>
 
             <!-- Step 4: Display accommodation options -->
             <div v-if="step === 4" key="step4">
               <h2>Available Accommodations</h2>
-              <div
-                v-for="option in getAccommodations()"
-                @click="selectAccommodation(option)"
-              >
-                {{ option.name }} in {{ option.location }}: ${{ option.cost }}
-                per night
+              <div class="grid-container">
+                <div
+                  class="listing"
+                  v-for="option in getAccommodations()"
+                  @click="selectAccommodation(option)">
+                  <div class="listing-img-container">
+                    <img
+                      class="listing-img"
+                      :src="option.image"
+                      alt="Image of {{ option.name }}" />
+                  </div>
+                  <div class="listing-info">
+                    <div>{{ option.name }} in {{ option.location }}</div>
+                    <div>${{ option.cost }} per night</div>
+                  </div>
+                  <div class="listing-button">
+                    <button class="option-button">More Info</button>
+                  </div>
+                </div>
               </div>
-              <button @click="previousStep">Back</button>
+              <button class="option-button" @click="previousStep">Back</button>
             </div>
           </transition>
 

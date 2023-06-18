@@ -6,3 +6,91 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.option-button {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-style: none;
+  font-family: $myfont;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 30px;
+  margin: 15px;
+  padding: 20px 23px;
+  position: relative;
+  overflow: hidden;
+}
+.option-button::before {
+  content: "";
+  position: absolute;
+  background-color: rgba(0, 242, 40, 0.37);
+  width: 10%;
+  height: 25%;
+  border-radius: 50%;
+  z-index: 3;
+  top: 35%;
+  left: 45%;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.option-button:hover::before {
+  -webkit-transform: scale(12);
+  transform: scale(12);
+  -webkit-transition: border-radius 0.5s 0.5s, -webkit-transform 0.5s;
+  transition: border-radius 0.5s 0.5s, -webkit-transform 0.5s;
+  transition: transform 0.5s, border-radius 0.5s 0.5s;
+  transition: transform 0.5s, border-radius 0.5s 0.5s, -webkit-transform 0.5s;
+}
+.option-button:hover::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.active {
+  background-color: rgb(61, 112, 55); /* or any other style you want */
+}
+.grid-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 30px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.listing {
+  border-radius: 20px;
+  border-style: solid;
+  border-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Adjust as needed */
+  margin: 20px; /* Adjust as needed */
+}
+
+.listing-img-container {
+  width: 100%;
+}
+
+.listing-img {
+  width: 400px;
+  border-radius: 20px;
+}
+
+.listing-info {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.listing-button {
+  margin-top: 10px; /* Adjust as needed */
+}

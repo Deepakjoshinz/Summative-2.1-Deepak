@@ -7,6 +7,7 @@ export const accommodationOptions = [
     maxPeople: 5,
     minDays: 2,
     maxDays: 15,
+    image: "img/auckHouse.jpeg",
   },
   {
     name: "Hotel",
@@ -16,6 +17,7 @@ export const accommodationOptions = [
     maxPeople: 2,
     minDays: 1,
     maxDays: 5,
+    image: "img/auckHotel.webp",
   },
   {
     name: "Hostel",
@@ -25,6 +27,7 @@ export const accommodationOptions = [
     maxPeople: 1,
     minDays: 1,
     maxDays: 10,
+    image: "img/auckHostel.jpg",
   },
   {
     name: "Motel",
@@ -34,6 +37,7 @@ export const accommodationOptions = [
     maxPeople: 4,
     minDays: 3,
     maxDays: 10,
+    image: "img/auckHouse.jpeg",
   },
   {
     name: "House",
