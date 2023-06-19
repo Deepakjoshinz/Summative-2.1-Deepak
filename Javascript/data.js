@@ -1,18 +1,21 @@
+// Define an array to hold various accommodation options
 export const accommodationOptions = [
+  // Each object in the array represents a single accommodation option
   {
-    name: "House",
-    listingName: "Family Home - Stylish Sanctuary",
-    location: "Auckland",
-    cost: 240,
-    minPeople: 1,
-    maxPeople: 5,
-    minDays: 2,
-    maxDays: 15,
-    image: "img/auckHouse.jpeg",
-    address: "45 Hanene Street, St Heliers, Auckland 1071",
-    latitude: "-36.851810",
-    longitude: "174.849200",
+    name: "House", // The type of accommodation
+    listingName: "Family Home - Stylish Sanctuary", // The name or title of the listing (not present in all objects)
+    location: "Auckland", // The city where the accommodation is located
+    cost: 240, // The cost per night of the accommodation
+    minPeople: 1, // The minimum number of people the accommodation can host
+    maxPeople: 5, // The maximum number of people the accommodation can host
+    minDays: 2, // The minimum number of days the accommodation can be booked for
+    maxDays: 15, // The maximum number of days the accommodation can be booked for
+    image: "img/auckHouse.jpeg", // The path to an image of the accommodation (not present in all objects)
+    address: "45 Hanene Street, St Heliers, Auckland 1071", // The physical address of the accommodation (not present in all objects)
+    latitude: "-36.851810", // The latitude coordinate of the accommodation (not present in all objects)
+    longitude: "174.849200", // The longitude coordinate of the accommodation (not present in all objects)
   },
+  // Additional accommodation options follow, each represented by an object in the array...
   {
     name: "Hotel",
     location: "Auckland",
