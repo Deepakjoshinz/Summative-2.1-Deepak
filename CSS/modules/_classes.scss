@@ -1,12 +1,15 @@
+// Transitions for fade-in and fade-out animations.
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
 }
 
+// Styling for the option buttons.
 .option-button {
   background-color: rgba(255, 255, 255, 0.8);
   color: rgb(0, 0, 0);
@@ -19,51 +22,45 @@
   padding: 20px 23px;
   position: relative;
   overflow: hidden;
-}
-.option-button::before {
-  content: "";
-  position: absolute;
-  background-color: rgba(0, 242, 40, 0.37);
-  width: 10%;
-  height: 25%;
-  border-radius: 50%;
-  z-index: 3;
-  top: 35%;
-  left: 45%;
-  -webkit-transform: scale(0);
-  transform: scale(0);
+
+  // Creates a "ripple" effect on button click.
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 242, 40, 0.37);
+    width: 10%;
+    height: 25%;
+    border-radius: 50%;
+    z-index: 3;
+    top: 35%;
+    left: 45%;
+    transform: scale(0);
+  }
+
+  &:hover {
+    &::before {
+      transform: scale(12);
+      transition: transform 0.5s, border-radius 0.5s 0.5s;
+    }
+  }
 }
 
-.option-button:hover::before {
-  -webkit-transform: scale(12);
-  transform: scale(12);
-  -webkit-transition: border-radius 0.5s 0.5s, -webkit-transform 0.5s;
-  transition: border-radius 0.5s 0.5s, -webkit-transform 0.5s;
-  transition: transform 0.5s, border-radius 0.5s 0.5s;
-  transition: transform 0.5s, border-radius 0.5s 0.5s, -webkit-transform 0.5s;
-}
-.option-button:hover::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-}
-
+// Style for active button.
 .active {
-  background-color: rgb(112, 75, 55); /* or any other style you want */
+  background-color: rgb(112, 75, 55);
 }
+
+// Grid container for listings.
 .grid-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   border-radius: 30px;
-  border-style: solid;
   border-width: 10px;
   border-color: rgba(0, 0, 0, 0);
 }
 
+// Styles for each listing.
 .listing {
   border-radius: 20px;
   border-style: solid;
@@ -71,42 +68,47 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* Adjust as needed */
-  margin: 20px; /* Adjust as needed */
+  width: 100%;
+  margin: 20px;
 }
 
+// Styles for listing images.
 .listing-img-container {
   width: 100%;
 }
-
 .listing-img {
   width: 400px;
   border-radius: 20px;
 }
 
+// Styles for listing information.
 .listing-info {
   text-align: center;
   color: white;
   font-weight: bold;
 }
 
+// Styles for listing button.
 .listing-button {
-  margin-top: 10px; /* Adjust as needed */
+  margin-top: 10px;
 }
+
+// Styles for the close icon.
 .close-icon {
   position: absolute;
-  right: 15px;
-  top: 15px;
-  color: #fff; /* or whatever color you prefer */
-  font-size: 90px; /* adjust size as needed */
+  right: 25px;
+  top: -25px;
+  color: #fff;
+  font-size: 90px;
   cursor: pointer;
   z-index: 101;
 }
 
+// Styles for the modal.
 .modal {
   z-index: 99;
   width: 100%;
-  height: 85%;
+  height: 90%;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -114,11 +116,15 @@
   color: rgb(251, 251, 251);
   text-align: center;
   border-radius: 30px;
-  /* For other browsers */
   box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.798);
   pointer-events: none;
+  h2{
+    margin: 30px;
+    font-size: 35px !important;
+  }
 }
 
+// Styles for the content inside the modal.
 .modal-info {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -127,18 +133,23 @@
     "image image price"
     "image image total"
     "map map map";
+    justify-items: center;
+
   p {
-    padding: 10px 30px;
-    text-align: right !important;
+    padding: 65px 30px;
+    text-align: right;
     color: rgb(255, 255, 255) !important;
     font-size: 40px;
   }
+
   .location {
     grid-area: location;
   }
+
   .price {
     grid-area: price;
   }
+
   .total {
     grid-area: total;
   }
@@ -147,13 +158,15 @@
     grid-area: image;
     width: 900px;
     padding: 20px;
-    border-radius: 40px !important;
+    border-radius: 40px;
   }
+
 }
+
+// Styles for the map inside the modal.
 #map {
-  margin: 2%;
   border-radius: 20px;
-  grid-area: map; // Place the map in the map grid area
-  width: 96%; // Make the map span across the entire width of the modal
-  height: 300px; // Adjust the height as needed
+  grid-area: map;
+  width: 100%;
+  height: 336px;
 }
