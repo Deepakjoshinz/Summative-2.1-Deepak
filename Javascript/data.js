@@ -1,6 +1,7 @@
 export const accommodationOptions = [
   {
     name: "House",
+    listingName: "Family Home - Stylish Sanctuary",
     location: "Auckland",
     cost: 240,
     minPeople: 1,
@@ -8,6 +9,9 @@ export const accommodationOptions = [
     minDays: 2,
     maxDays: 15,
     image: "img/auckHouse.jpeg",
+    address: "45 Hanene Street, St Heliers, Auckland 1071",
+    latitude: "-36.851810",
+    longitude: "174.849200",
   },
   {
     name: "Hotel",

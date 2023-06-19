@@ -14,13 +14,11 @@ new Vue({
   },
   computed: {
     uniqueLocations() {
-      // Get a list of unique locations from the accommodation options
       return [
         ...new Set(accommodationOptions.map((option) => option.location)),
       ];
     },
     filteredAccommodationOptions() {
-      // Filter the accommodation options based on the selected location
       return accommodationOptions.filter(
         (option) => option.location === this.location
       );
@@ -28,7 +26,6 @@ new Vue({
   },
   methods: {
     enter(el, done) {
-      // Use the global TweenMax variable directly
       TweenMax.fromTo(
         el,
         0.5,
@@ -52,10 +49,8 @@ new Vue({
     },
     selectAccommodation(option) {
       this.selectedAccommodation = option;
-      // TODO: Load map and points of interest
     },
     getAccommodations() {
-      // Return all accommodation options that fit the user's needs
       return this.filteredAccommodationOptions.filter(
         (option) =>
           this.people >= option.minPeople &&
@@ -63,6 +58,50 @@ new Vue({
           this.days >= option.minDays &&
           this.days <= option.maxDays
       );
+    },
+    createMap() {
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZGVlcGFram9zaGlueiIsImEiOiJjbGoyZXUzeTAwdjR4M25sbGFmY2pud3F0In0.IF95gpfqzUq2IL9g3YSfUQ";
+      var geojson = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [
+                this.selectedAccommodation.latitude,
+                this.selectedAccommodation.longitude,
+              ],
+            },
+            properties: {
+              title: "Accomodation",
+              description: this.selectAccommodation.location,
+            },
+          },
+        ],
+      };
+
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [
+          this.selectedAccommodation.longitude,
+          this.selectedAccommodation.latitude,
+        ],
+        zoom: 15,
+      });
+    },
+    closeModal: function () {
+      console.log("Closing modal");
+      this.selectedAccommodation = null; // Assuming this would close your modal
+    },
+  },
+  watch: {
+    selectedAccommodation() {
+      this.$nextTick(() => {
+        this.createMap();
+      });
     },
   },
 });

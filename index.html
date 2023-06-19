@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
+      rel="stylesheet" />
     <link rel="stylesheet" href="/CSS/main.min.css" />
+
     <title>Document</title>
   </head>
   <body>
@@ -67,7 +71,7 @@
 
             <!-- Step 4: Display accommodation options -->
             <div v-if="step === 4" key="step4">
-              <h2>Available Accommodations</h2>
+              <h3>Available Accommodations</h3>
               <div class="grid-container">
                 <div
                   class="listing"
@@ -80,7 +84,7 @@
                       alt="Image of {{ option.name }}" />
                   </div>
                   <div class="listing-info">
-                    <div>{{ option.name }} in {{ option.location }}</div>
+                    <div>{{ option.listingName }} in {{ option.location }}</div>
                     <div>${{ option.cost }} per night</div>
                   </div>
                   <div class="listing-button">
@@ -94,20 +98,33 @@
 
           <!-- Modal for selected accommodation -->
           <div v-if="selectedAccommodation" class="modal">
-            <h2>{{ selectedAccommodation.name }}</h2>
-            <p>Location: {{ selectedAccommodation.location }}</p>
-            <p>${{ selectedAccommodation.cost }} per night</p>
-            <p>
-              Total cost for {{ days }} days: ${{ selectedAccommodation.cost *
-              days }}
-            </p>
-            <!-- TODO: Display map -->
+            <span class="close-icon" @click="closeModal">&times;</span>
+            <h2>
+              {{ selectedAccommodation.listingName }} in {{
+              selectedAccommodation.location }}
+            </h2>
+            <div class="modal-info">
+              <img
+                class="modal-img"
+                :src="selectedAccommodation.image"
+                alt="Image of {{ selectedAccommodation.name }}" />
+              <p class="location">
+                Location: {{ selectedAccommodation.location }}
+              </p>
+              <p classs="price">${{ selectedAccommodation.cost }} per night</p>
+              <p class="total">
+                Total cost for {{ days }} days: ${{ selectedAccommodation.cost *
+                days }}
+              </p>
+              <div id="map"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
     <script src="Javascript/minified/gsap.min.js"></script>
     <script type="module" src="Javascript/data.js"></script>
     <script src="Javascript/cursor.js"></script>

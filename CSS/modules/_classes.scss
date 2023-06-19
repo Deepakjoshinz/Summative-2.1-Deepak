@@ -8,8 +8,8 @@
 }
 
 .option-button {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(0, 0, 0);
   border-style: none;
   font-family: $myfont;
   font-weight: bold;
@@ -52,13 +52,12 @@
 }
 
 .active {
-  background-color: rgb(61, 112, 55); /* or any other style you want */
+  background-color: rgb(112, 75, 55); /* or any other style you want */
 }
 .grid-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 30px;
   border-style: solid;
   border-width: 10px;
@@ -93,4 +92,68 @@
 
 .listing-button {
   margin-top: 10px; /* Adjust as needed */
+}
+.close-icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #fff; /* or whatever color you prefer */
+  font-size: 90px; /* adjust size as needed */
+  cursor: pointer;
+  z-index: 101;
+}
+
+.modal {
+  z-index: 99;
+  width: 100%;
+  height: 85%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(62, 62, 62);
+  color: rgb(251, 251, 251);
+  text-align: center;
+  border-radius: 30px;
+  /* For other browsers */
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.798);
+  pointer-events: none;
+}
+
+.modal-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "image image location"
+    "image image price"
+    "image image total"
+    "map map map";
+  p {
+    padding: 10px 30px;
+    text-align: right !important;
+    color: rgb(255, 255, 255) !important;
+    font-size: 40px;
+  }
+  .location {
+    grid-area: location;
+  }
+  .price {
+    grid-area: price;
+  }
+  .total {
+    grid-area: total;
+  }
+
+  img {
+    grid-area: image;
+    width: 900px;
+    padding: 20px;
+    border-radius: 40px !important;
+  }
+}
+#map {
+  margin: 2%;
+  border-radius: 20px;
+  grid-area: map; // Place the map in the map grid area
+  width: 96%; // Make the map span across the entire width of the modal
+  height: 300px; // Adjust the height as needed
 }
