@@ -111,7 +111,7 @@ new Vue({
           this.selectedAccommodation.longitude,
           this.selectedAccommodation.latitude,
         ],
-        zoom: 15,
+        zoom: 11,
       });
 
       // Add accommodation to map on load
@@ -123,7 +123,7 @@ new Vue({
 
         // Load marker image and add to map
         map.loadImage(
-          "/img/mapbox-marker-icon-20px-green.png",
+          "/img/mapbox/mapbox-marker-icon-20px-green.png",
           (error, image) => {
             if (error) throw error;
             map.addImage("custom-marker", image);

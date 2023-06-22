@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Import Mapbox and CSS files -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/CSS/main.min.css" />
     <title>Document</title>
   </head>
@@ -51,7 +54,8 @@
                 :class="{ active: people === n }"
                 type="button"
                 v-for="n in 5"
-                @click="people = n; nextStep()">
+                @click="people = n; nextStep()"
+              >
                 {{ n }} Guest(s)
               </button>
             </div>
@@ -85,13 +89,15 @@
                 <div
                   class="listing"
                   v-for="option in getAccommodations()"
-                  @click="selectAccommodation(option)">
+                  @click="selectAccommodation(option)"
+                >
                   <!-- Accommodation Image -->
                   <div class="listing-img-container">
                     <img
                       class="listing-img"
                       :src="option.image"
-                      alt="Image of {{ option.name }}" />
+                      alt="Image of {{ option.name }}"
+                    />
                   </div>
                   <!-- Accommodation Info -->
                   <div class="listing-info">
@@ -113,27 +119,32 @@
             <!-- Close icon for the modal -->
             <span class="close-icon" @click="closeModal">&times;</span>
             <!-- Accommodation details -->
-            <h2>
-              {{ selectedAccommodation.listingName }} in {{
-              selectedAccommodation.location }}
-            </h2>
-            <div class="modal-info">
-              <!-- Accommodation Image -->
-              <img
-                class="modal-img"
-                :src="selectedAccommodation.image"
-                alt="Image of {{ selectedAccommodation.name }}" />
-              <!-- Location, price, total cost and map -->
-              <p class="location">
-                Location: {{ selectedAccommodation.location }}
-              </p>
-              <p classs="price">${{ selectedAccommodation.cost }} per night</p>
-              <p class="total">
-                Total cost for {{ days }} days: ${{ selectedAccommodation.cost *
-                days * people}}
-              </p>
-              <!-- Map container -->
-              <div id="map"></div>
+            <div class="modal-content">
+              <h2>
+                {{ selectedAccommodation.listingName }} in {{
+                selectedAccommodation.location }}
+              </h2>
+              <div class="modal-info">
+                <!-- Accommodation Image -->
+                <img
+                  class="modal-img"
+                  :src="selectedAccommodation.image"
+                  alt="Image of {{ selectedAccommodation.name }}"
+                />
+                <!-- Location, price, total cost and map -->
+                <p class="location">
+                  Location: {{ selectedAccommodation.location }}
+                </p>
+                <p classs="price">
+                  ${{ selectedAccommodation.cost }} per night
+                </p>
+                <p class="total">
+                  Total cost for {{ days }} days and {{ people }} guest(s): ${{
+                  selectedAccommodation.cost * days * people}}
+                </p>
+                <!-- Map container -->
+                <div id="map"></div>
+              </div>
             </div>
           </div>
         </div>
