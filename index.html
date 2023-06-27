@@ -58,6 +58,8 @@
               >
                 {{ n }} Guest(s)
               </button>
+              <button class="option-button" @click="nextStep">Next</button>
+              <p class="error" v-if="error">{{ error }}</p>
             </div>
 
             <!-- Step 2: Select number of days -->
@@ -68,6 +70,7 @@
               </select>
               <button class="option-button" @click="nextStep">Next</button>
               <button class="option-button" @click="previousStep">Back</button>
+              <p class="error" v-if="error">{{ error }}</p>
             </div>
 
             <!-- Step 3: Select location -->
@@ -79,10 +82,22 @@
               </select>
               <button class="option-button" @click="nextStep">Next</button>
               <button class="option-button" @click="previousStep">Back</button>
+              <p class="error" v-if="error">{{ error }}</p>
             </div>
 
-            <!-- Step 4: Display accommodation options -->
             <div v-if="step === 4" key="step4">
+              <h3>Select Your Meal Plans</h3>
+              <p>You can choose multiple diets.</p>
+              <div v-for="option in uniqueMealOptions" class="option-container">
+                <input type="checkbox" :id="option" :value="option" v-model="selectedMeals">
+                <label :for="option">{{ option }}</label>
+              </div>
+              <button class="option-button" @click="nextStep">Next</button>
+              <button class="option-button" @click="previousStep">Back</button>
+              <p class="error" v-if="error">{{ error }}</p>
+            </div>
+
+            <div v-if="step === 5" key="step5">
               <h3>Available Accommodations</h3>
               <div class="grid-container">
                 <!-- List of accommodations -->
@@ -141,6 +156,9 @@
                 <p class="total">
                   Total cost for {{ days }} days and {{ people }} guest(s): ${{
                   selectedAccommodation.cost * days * people}}
+                </p>
+                <p class="total-meals">
+                  Total meal cost for {{ days }} days and {{ people }} guest(s): ${{ totalMealCost }}
                 </p>
                 <!-- Map container -->
                 <div id="map"></div>

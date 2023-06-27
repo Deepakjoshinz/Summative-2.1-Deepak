@@ -110,13 +110,13 @@
   z-index: 99;
   width: 80%;
   height: 90%;
-  position: fixed; /* Changed from absolute to fixed */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
   transform: translate(
     -50%,
     -50%
-  ); /* Adjust for the height and width of the modal */
+  ); 
   background-color: rgb(62, 62, 62);
   color: rgb(251, 251, 251);
   text-align: center;
@@ -149,7 +149,7 @@
   justify-items: center;
   align-items: center;
   flex-grow: 1;
-  overflow: auto; /* Add scroll if content is too long */
+  overflow: auto; 
 
   p {
     color: rgb(255, 255, 255) !important;
@@ -184,5 +184,5 @@
   width: calc(100% - 20px);
   height: calc(100% - 20px);
   flex-grow: 1;
-  min-height: 0; /* Allow it to shrink if necessary */
+  min-height: 0; 
 }

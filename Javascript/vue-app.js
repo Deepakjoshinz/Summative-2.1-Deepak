@@ -1,23 +1,74 @@
 // Importing accommodation options from data.js
 import { accommodationOptions } from "./data.js";
+import { mealPlans } from "./data.js";
 
 new Vue({
   el: "#app", // Mount Vue app on element with id "app"
 
   // Define initial data
-  data: {
-    step: 1,
-    people: 1,
-    days: "",
-    location: "",
-    accommodation: null,
-    selectedAccommodation: null,
-    totalCost: null,
-    error: "",
+  data: function () {
+    return {
+      step: 1,
+      people: null,
+      days: null,
+      location: "",
+      accommodation: null,
+      selectedAccommodation: null,
+      totalCost: null,
+      selectedMeals: [],
+      error: null,
+    };
   },
 
   // Compute derived values from data
   computed: {
+    uniqueMealOptions() {
+      return [...new Set(mealPlans.map((plan) => plan.mealOption))];
+    },
+
+    totalMealCost() {
+      if (this.selectedAccommodation && this.selectedMeals.length > 0) {
+        let priceType;
+        switch (this.selectedAccommodation.type) {
+          case "House":
+            priceType = "housePricePP";
+            break;
+          case "Hotel":
+            priceType = "hotelPricePP";
+            break;
+          case "Motel":
+            priceType = "motelPricePP";
+            break;
+          case "Hostel":
+            priceType = "hostelPricePP";
+            break;
+          default:
+            console.error(
+              `Invalid accommodation type: ${this.selectedAccommodation.type}`
+            );
+            return 0;
+        }
+        console.log(`priceType: ${priceType}`);
+
+        let totalCost = 0;
+        for (let mealOption of this.selectedMeals) {
+          let mealsForOption = mealPlans.filter(
+            (plan) => plan.mealOption === mealOption
+          );
+          for (let meal of mealsForOption) {
+            console.log(`meal[priceType]: ${meal[priceType]}`);
+            console.log(`this.people: ${this.people}`);
+            console.log(`this.days: ${this.days}`);
+            totalCost += meal[priceType] * this.people * this.days;
+            console.log(`totalCost: ${totalCost}`);
+          }
+        }
+
+        return totalCost;
+      }
+      return 0;
+    },
+
     // Get unique locations from accommodation options
     uniqueLocations() {
       return [
@@ -52,8 +103,40 @@ new Vue({
       );
     },
 
+    mealSelection(value) {
+      const index = this.selectedMeals.indexOf(value);
+
+      if (index > -1) {
+        this.selectedMeals.splice(index, 1);
+      } else {
+        this.selectedMeals.push(value);
+      }
+    },
+
     // Change step to next or previous
     nextStep() {
+      this.error = null; // clear the error message
+
+      if (this.step === 1 && !this.people) {
+        this.error = "Please select a number of guests.";
+        return;
+      }
+
+      if (this.step === 2 && !this.days) {
+        this.error = "Please select a number of days for your stay.";
+        return;
+      }
+
+      if (this.step === 3 && !this.location) {
+        this.error = "Please select a location for your stay.";
+        return;
+      }
+
+      if (this.step === 4 && !this.selectedMeals.length) {
+        this.error = "Please select at least one meal type for your stay.";
+        return;
+      }
+      // If everything is OK, move to the next step
       this.step += 1;
     },
     previousStep() {

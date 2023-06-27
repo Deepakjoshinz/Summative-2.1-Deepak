@@ -1,9 +1,231 @@
 // Define an array to hold various meal plans.
 export const mealPlans = [
-  // Each object in the array represents a meal plane for a single person
+  // Each object in the array represents a meal plan for a single person.
   {
-    mealOption: "vegan", // The type of meal diet. eg. Vegan, Vegetarian, Chicken, Red meats, Beef(as some people eat meat but no beef), Fish.
-    type: "breakfast", //
+    mealOption: "vegan", // The type of meal diet.
+    type: "breakfast", // The type of meal.
+    name: "Vegan French Toast", // The name of the meal.
+    housePricePP: 5, // The price per person at a house.
+    hotelPricePP: 18, // The price per person at a hotel.
+    motelPricePP: 18, // The price per person at a motel.
+    hostelPricePP: 18, // The price per person at a hostel.
+  },
+  // Additional meal plans follow, each represented by an object in the array...
+  {
+    mealOption: "vegan",
+    type: "lunch",
+    name: "Chickpea Salad",
+    housePricePP: 7,
+    hotelPricePP: 20,
+    motelPricePP: 20,
+    hostelPricePP: 20,
+  },
+  {
+    mealOption: "vegan",
+    type: "dinner",
+    name: "Vegan Lasagna",
+    housePricePP: 10,
+    hotelPricePP: 22,
+    motelPricePP: 22,
+    hostelPricePP: 22,
+  },
+  {
+    mealOption: "vegan",
+    type: "snack",
+    name: "Fruit Smoothie",
+    housePricePP: 3,
+    hotelPricePP: 10,
+    motelPricePP: 10,
+    hostelPricePP: 10,
+  },
+
+  // Vegetarian meals
+  {
+    mealOption: "vegetarian",
+    type: "breakfast",
+    name: "Vegetarian Omelette",
+    housePricePP: 6,
+    hotelPricePP: 19,
+    motelPricePP: 19,
+    hostelPricePP: 19,
+  },
+  {
+    mealOption: "vegetarian",
+    type: "lunch",
+    name: "Vegetable Stir Fry",
+    housePricePP: 8,
+    hotelPricePP: 21,
+    motelPricePP: 21,
+    hostelPricePP: 21,
+  },
+  {
+    mealOption: "vegetarian",
+    type: "dinner",
+    name: "Vegetarian Pasta",
+    housePricePP: 11,
+    hotelPricePP: 24,
+    motelPricePP: 24,
+    hostelPricePP: 24,
+  },
+  {
+    mealOption: "vegetarian",
+    type: "snack",
+    name: "Greek Yogurt with Honey and Nuts",
+    housePricePP: 4,
+    hotelPricePP: 12,
+    motelPricePP: 12,
+    hostelPricePP: 12,
+  },
+  // Chicken meals
+  {
+    mealOption: "chicken",
+    type: "breakfast",
+    name: "Chicken and Egg Wrap",
+    housePricePP: 6,
+    hotelPricePP: 19,
+    motelPricePP: 19,
+    hostelPricePP: 19,
+  },
+  {
+    mealOption: "chicken",
+    type: "lunch",
+    name: "Grilled Chicken Salad",
+    housePricePP: 8,
+    hotelPricePP: 22,
+    motelPricePP: 22,
+    hostelPricePP: 22,
+  },
+  {
+    mealOption: "chicken",
+    type: "dinner",
+    name: "Chicken Stir Fry",
+    housePricePP: 12,
+    hotelPricePP: 26,
+    motelPricePP: 26,
+    hostelPricePP: 26,
+  },
+  {
+    mealOption: "chicken",
+    type: "snack",
+    name: "Chicken Skewers",
+    housePricePP: 5,
+    hotelPricePP: 15,
+    motelPricePP: 15,
+    hostelPricePP: 15,
+  },
+
+  // Red meat meals
+  {
+    mealOption: "red meat",
+    type: "breakfast",
+    name: "Bacon and Eggs",
+    housePricePP: 7,
+    hotelPricePP: 20,
+    motelPricePP: 20,
+    hostelPricePP: 20,
+  },
+  {
+    mealOption: "red meat",
+    type: "lunch",
+    name: "Steak Sandwich",
+    housePricePP: 10,
+    hotelPricePP: 24,
+    motelPricePP: 24,
+    hostelPricePP: 24,
+  },
+  {
+    mealOption: "red meat",
+    type: "dinner",
+    name: "Roasted Lamb Chops",
+    housePricePP: 14,
+    hotelPricePP: 28,
+    motelPricePP: 28,
+    hostelPricePP: 28,
+  },
+  {
+    mealOption: "red meat",
+    type: "snack",
+    name: "Beef Jerky",
+    housePricePP: 4,
+    hotelPricePP: 14,
+    motelPricePP: 14,
+    hostelPricePP: 14,
+  },
+
+  // Beef meals
+  {
+    mealOption: "beef",
+    type: "breakfast",
+    name: "Beef Sausage and Eggs",
+    housePricePP: 7,
+    hotelPricePP: 20,
+    motelPricePP: 20,
+    hostelPricePP: 20,
+  },
+  {
+    mealOption: "beef",
+    type: "lunch",
+    name: "Beef Burger",
+    housePricePP: 10,
+    hotelPricePP: 24,
+    motelPricePP: 24,
+    hostelPricePP: 24,
+  },
+  {
+    mealOption: "beef",
+    type: "dinner",
+    name: "Beef Stew",
+    housePricePP: 14,
+    hotelPricePP: 28,
+    motelPricePP: 28,
+    hostelPricePP: 28,
+  },
+  {
+    mealOption: "beef",
+    type: "snack",
+    name: "Beef Sliders",
+    housePricePP: 6,
+    hotelPricePP: 16,
+    motelPricePP: 16,
+    hostelPricePP: 16,
+  },
+
+  // Fish meals
+  {
+    mealOption: "fish",
+    type: "breakfast",
+    name: "Smoked Salmon Bagel",
+    housePricePP: 8,
+    hotelPricePP: 22,
+    motelPricePP: 22,
+    hostelPricePP: 22,
+  },
+  {
+    mealOption: "fish",
+    type: "lunch",
+    name: "Fish Tacos",
+    housePricePP: 11,
+    hotelPricePP: 25,
+    motelPricePP: 25,
+    hostelPricePP: 25,
+  },
+  {
+    mealOption: "fish",
+    type: "dinner",
+    name: "Grilled Sea Bass",
+    housePricePP: 15,
+    hotelPricePP: 30,
+    motelPricePP: 30,
+    hostelPricePP: 30,
+  },
+  {
+    mealOption: "fish",
+    type: "snack",
+    name: "Shrimp Cocktail",
+    housePricePP: 7,
+    hotelPricePP: 18,
+    motelPricePP: 18,
+    hostelPricePP: 18,
   },
 ];
 
